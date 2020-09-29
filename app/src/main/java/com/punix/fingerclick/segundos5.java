@@ -20,10 +20,15 @@ import androidx.appcompat.app.AppCompatActivity;
 public class segundos5 extends AppCompatActivity {
 
     int sumatorio = 0;
-    boolean tiempobajando;
+    boolean tiempobajando = false;
+    boolean finalizado = false;
     int segundosrecibidos;
     ImageView back;
-
+    ImageView volver;
+    TextView Segundos;
+    int segundosiniciales;
+    ImageButton botonpulsar;
+    TextView Score;
 
 
     @Override
@@ -33,7 +38,22 @@ public class segundos5 extends AppCompatActivity {
         getSupportActionBar().hide();
 
         back = (ImageView) findViewById(R.id.back);
+        volver = (ImageView) findViewById(R.id.devuelta);
         back.setVisibility(View.INVISIBLE);
+        volver.setVisibility(View.INVISIBLE);
+
+        volver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                segundosrecibidos = segundosiniciales;
+                finalizado = false;
+                sumatorio = 0;
+                tiempobajando = false;
+                Score.setText("Score " + sumatorio);
+                back.setVisibility(View.INVISIBLE);
+                volver.setVisibility(View.INVISIBLE);
+            }
+        });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,46 +66,54 @@ public class segundos5 extends AppCompatActivity {
 
 
 
-        ImageButton botonpulsar = (ImageButton) findViewById(R.id.botonaco);
-        final TextView Score = (TextView) findViewById(R.id.Score);
+        botonpulsar = (ImageButton) findViewById(R.id.botonaco);
+        Score = (TextView) findViewById(R.id.Score);
+        Segundos = (TextView) findViewById(R.id.segundosRest);
 
 
         Score.setText("Score  0");
 
+            botonpulsar.setOnClickListener(new View.OnClickListener() {
 
-        botonpulsar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (sumatorio == 0) {
-                    new CountDownTimer(segundosrecibidos, 1000) {
+                @Override
+                public void onClick(View v) {
+                    if (!tiempobajando && !finalizado) {
 
-
-                        public void onTick(long millisUntilFinished) {
-                            Toast toast = Toast.makeText(getApplicationContext(), "seconds remaining: " + millisUntilFinished / 1000, Toast.LENGTH_LONG);
-                            toast.setGravity(Gravity.CENTER|Gravity.TOP,0,100);
-                            toast.show();
-                            tiempobajando= true;
-
-                        }
-
-                        public void onFinish() {
-                            Toast.makeText(getApplicationContext(), "done!", Toast.LENGTH_LONG).show();
-                            back.setVisibility(View.VISIBLE);
-                            tiempobajando= false;
+                        new CountDownTimer(segundosrecibidos, 1000) {
 
 
-                        }
-                    }.start();
+                            public void onTick(long millisUntilFinished) {
+                                actualizarhora((int)millisUntilFinished/1000);
+
+                                tiempobajando = true;
+
+                            }
+
+                            public void onFinish() {
+                                Toast.makeText(getApplicationContext(), "done!", Toast.LENGTH_LONG).show();
+                                back.setVisibility(View.VISIBLE);
+                                volver.setVisibility(View.VISIBLE);
+                                tiempobajando = false;
+                                finalizado = true;
+
+
+                            }
+                        }.start();
+                    }
+
+
+                    if (tiempobajando) {
+                        sumatorio++;
+                        Score.setText("Score " + sumatorio);
+
+                    }
                 }
-                if (tiempobajando){
-                    sumatorio++;
-                    Score.setText("Score " + sumatorio);
 
-                }
- }
-        });
+            });
+
 
     }
+
 
     // TODO: Add onResume() here:
     @Override
@@ -93,11 +121,21 @@ public class segundos5 extends AppCompatActivity {
         super.onResume();
         Log.d("segundero", "onResume() called");
 
-        Intent myIntent = getIntent();
-        int segundorecibidos =myIntent.getIntExtra("Segundos",0);
-        if (segundorecibidos != 0) {
-            segundosrecibidos = segundorecibidos;
-        }
+
+            Intent myIntent = getIntent();
+            int segundorecibidos2 = myIntent.getIntExtra("Segundos", 0);
+            if (segundorecibidos2 != 0) {
+                segundosrecibidos = segundorecibidos2;
+            }
+              segundosiniciales = segundorecibidos2;
+
+
+
+    }
+
+    public void actualizarhora(int segundos) {
+
+        Segundos.setText("Segundos "+ String.valueOf(segundos));
 
     }
 }

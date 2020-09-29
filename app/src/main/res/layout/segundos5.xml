@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
+    <TextView
+        android:id="@+id/segundosRest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/botonaco"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        android:text="Segundos " />
+
     <ImageView
         android:id="@+id/back"
         android:layout_width="114dp"
@@ -15,6 +26,17 @@
         app:srcCompat="@drawable/left"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"/>
+
+    <ImageView
+        android:id="@+id/devuelta"
+        android:layout_width="114dp"
+        android:layout_height="85dp"
+        android:onClick="volver"
+        app:srcCompat="@drawable/devuelta"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"/>
 
