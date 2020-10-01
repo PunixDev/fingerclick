@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "993763050497",
+    "firebase_url": "https://fingerclick-618a2.firebaseio.com",
+    "project_id": "fingerclick-618a2",
+    "storage_bucket": "fingerclick-618a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993763050497:android:05250388088bdd8e7cac00",
+        "android_client_info": {
+          "package_name": "com.punix.fingerclick"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993763050497-tpn393rgo8o16bsihfr5ktfv1tokrk5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcCT2RaM9t-h6XHjC7YD6P7L7sdbplIRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993763050497-tpn393rgo8o16bsihfr5ktfv1tokrk5v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

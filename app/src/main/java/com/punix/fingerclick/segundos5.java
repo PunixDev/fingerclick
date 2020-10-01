@@ -15,7 +15,16 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class segundos5 extends AppCompatActivity {
 
@@ -29,13 +38,22 @@ public class segundos5 extends AppCompatActivity {
     int segundosiniciales;
     ImageButton botonpulsar;
     TextView Score;
-
+    FirebaseFirestore db;
+    Map<String, Object> user = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.segundos5);
         getSupportActionBar().hide();
+
+        /**
+         * parrafo que recupera inserta y recupera datos de la bbdd
+         *
+         */
+
+         db = FirebaseFirestore.getInstance();
+
 
         back = (ImageView) findViewById(R.id.back);
         volver = (ImageView) findViewById(R.id.devuelta);
@@ -95,8 +113,18 @@ public class segundos5 extends AppCompatActivity {
                                 volver.setVisibility(View.VISIBLE);
                                 tiempobajando = false;
                                 finalizado = true;
-
-
+                                db.collection("users")
+                                        .add(user)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                            }
+                                        });
                             }
                         }.start();
                     }
