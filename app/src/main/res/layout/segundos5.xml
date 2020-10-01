@@ -5,7 +5,7 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@drawable/bosque">
 
     <TextView
         android:id="@+id/segundosRest"
@@ -14,9 +14,11 @@
         android:layout_above="@+id/botonaco"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
+        android:text="Segundos "
         android:textAlignment="center"
+        android:textColor="#0C0C0C"
         android:textSize="36sp"
-        android:text="Segundos " />
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/back"
@@ -41,15 +43,14 @@
         android:layout_marginTop="5dp"/>
 
 
-
     <ImageButton
         android:id="@+id/botonaco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:onClick="Presionado"
         android:background="@null"
-        app:srcCompat="@drawable/boton" />
+        android:onClick="Presionado"
+        app:srcCompat="@drawable/redondofinalsinfondo" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,7 +67,9 @@
             android:layout_height="wrap_content"
             android:text="Score"
             android:textAlignment="center"
-            android:textSize="36sp" />
+            android:textColor="#0B0B0B"
+            android:textSize="36sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </RelativeLayout>
