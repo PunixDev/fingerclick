@@ -18,13 +18,22 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.protobuf.StringValue;
 
+import java.sql.DatabaseMetaData;
 import java.util.HashMap;
 import java.util.Map;
+
+import io.opencensus.stats.AggregationData;
 
 public class segundos5 extends AppCompatActivity {
 
@@ -39,7 +48,15 @@ public class segundos5 extends AppCompatActivity {
     ImageButton botonpulsar;
     TextView Score;
     FirebaseFirestore db;
-    Map<String, Object> user = new HashMap<>();
+    Map<String, String> user = new HashMap<>();
+
+    Map<String,Object> map = new HashMap<String,Object>();
+    String recordactual;
+
+    /**mirar aqui hay un fallo
+     *
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +65,14 @@ public class segundos5 extends AppCompatActivity {
         getSupportActionBar().hide();
 
         /**
-         * parrafo que recupera inserta y recupera datos de la bbdd
+         * parrafo que define la bbdd
+         */
+         db = FirebaseFirestore.getInstance();
+
+        /**
          *
          */
 
-         db = FirebaseFirestore.getInstance();
 
 
         back = (ImageView) findViewById(R.id.back);
@@ -113,18 +133,9 @@ public class segundos5 extends AppCompatActivity {
                                 volver.setVisibility(View.VISIBLE);
                                 tiempobajando = false;
                                 finalizado = true;
-                                db.collection("users")
-                                        .add(user)
-                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                            @Override
-                                            public void onSuccess(DocumentReference documentReference) {
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                            }
-                                        });
+                                user.put(segundosrecibidos/1000 + " segundos", String.valueOf(sumatorio));
+                                actualizarbbdd();
+
                             }
                         }.start();
                     }
@@ -157,6 +168,9 @@ public class segundos5 extends AppCompatActivity {
             }
               segundosiniciales = segundorecibidos2;
 
+        obtenerdatos();
+
+
 
 
     }
@@ -166,6 +180,32 @@ public class segundos5 extends AppCompatActivity {
         Segundos.setText("Segundos "+ String.valueOf(segundos));
 
     }
+
+    public  void actualizarbbdd(){
+        db.collection("users").document(String.valueOf(segundosiniciales/1000)).set(user);
+    }
+
+    public void obtenerdatos(){
+
+        /**
+         * PEDAZO DE CODIGO CON EL QUE CONSEGUIMOS RECUPERAR UN DATO DE LA BASE DE DATOS BUSCANDO DENTRO DEL documentSnapshot
+         */
+
+        db.collection("users").document(String.valueOf(segundosiniciales/1000)).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                recordactual = (String) documentSnapshot.get(segundosrecibidos/1000 + " segundos");
+                Toast.makeText(getApplicationContext(), "record inicial " + recordactual, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        }
 }
+
+
+
+
+
+
 
 
