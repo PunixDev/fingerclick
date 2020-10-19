@@ -47,16 +47,17 @@ public class segundos5 extends AppCompatActivity {
     int segundosiniciales;
     ImageButton botonpulsar;
     TextView Score;
+    TextView WordlRecord;
     FirebaseFirestore db;
     Map<String, String> user = new HashMap<>();
-
-    Map<String,Object> map = new HashMap<String,Object>();
+    int recordmundial;
     String recordactual;
+    CountDownTimer yourCountDownTimer;
 
-    /**mirar aqui hay un fallo
-     *
+    /*******************************************************************************************************
+     * EMPIEZA EL METODO ON CREATE
      * @param savedInstanceState
-     */
+     ********************************************************************************************************/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +78,6 @@ public class segundos5 extends AppCompatActivity {
 
         back = (ImageView) findViewById(R.id.back);
         volver = (ImageView) findViewById(R.id.devuelta);
-        back.setVisibility(View.INVISIBLE);
-        volver.setVisibility(View.INVISIBLE);
 
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +87,11 @@ public class segundos5 extends AppCompatActivity {
                 sumatorio = 0;
                 tiempobajando = false;
                 Score.setText("Score " + sumatorio);
-                back.setVisibility(View.INVISIBLE);
-                volver.setVisibility(View.INVISIBLE);
+                //back.setVisibility(View.INVISIBLE);
+                yourCountDownTimer.onFinish();
+                actualizarhora(0);
+                obtenerdatos();
+
             }
         });
 
@@ -98,6 +100,7 @@ public class segundos5 extends AppCompatActivity {
             public void onClick(View view) {
                 Intent myintent = new Intent(segundos5.this, MainActivity.class);
                 startActivity(myintent);
+                yourCountDownTimer.onFinish();
 
             }
         });
@@ -106,6 +109,7 @@ public class segundos5 extends AppCompatActivity {
 
         botonpulsar = (ImageButton) findViewById(R.id.botonaco);
         Score = (TextView) findViewById(R.id.Score);
+        WordlRecord = (TextView) findViewById(R.id.WorldRecod);
         Segundos = (TextView) findViewById(R.id.segundosRest);
 
 
@@ -116,8 +120,9 @@ public class segundos5 extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (!tiempobajando && !finalizado) {
+                        recordmundial = Integer.parseInt(String.valueOf(WordlRecord.getText()));
 
-                        new CountDownTimer(segundosrecibidos, 1000) {
+                        yourCountDownTimer = new CountDownTimer(segundosrecibidos, 1000) {
 
 
                             public void onTick(long millisUntilFinished) {
@@ -128,13 +133,18 @@ public class segundos5 extends AppCompatActivity {
                             }
 
                             public void onFinish() {
-                                Toast.makeText(getApplicationContext(), "done!", Toast.LENGTH_LONG).show();
+
                                 back.setVisibility(View.VISIBLE);
                                 volver.setVisibility(View.VISIBLE);
                                 tiempobajando = false;
                                 finalizado = true;
                                 user.put(segundosrecibidos/1000 + " segundos", String.valueOf(sumatorio));
-                                actualizarbbdd();
+                                if (sumatorio > recordmundial){
+                                    actualizarbbdd();
+                                    Toast.makeText(getApplicationContext(), "Recod conseguido!", Toast.LENGTH_LONG).show();
+                                }else{
+                                    Toast.makeText(getApplicationContext(), "Sigue intentandolo!", Toast.LENGTH_LONG).show();
+                                }
 
                             }
                         }.start();
@@ -167,8 +177,8 @@ public class segundos5 extends AppCompatActivity {
                 segundosrecibidos = segundorecibidos2;
             }
               segundosiniciales = segundorecibidos2;
+            obtenerdatos();
 
-        obtenerdatos();
 
 
 
@@ -195,7 +205,12 @@ public class segundos5 extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 recordactual = (String) documentSnapshot.get(segundosrecibidos/1000 + " segundos");
-                Toast.makeText(getApplicationContext(), "record inicial " + recordactual, Toast.LENGTH_LONG).show();
+                if (recordactual != null) {
+                    WordlRecord.setText(recordactual);
+                }else{
+                    WordlRecord.setText("0");
+                }
+                WordlRecord.setVisibility(View.INVISIBLE);
             }
         });
 
