@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layoutDescription="@xml/activity_main_scene"
     tools:context=".MainActivity"
-    android:background="@drawable/ciervo">
+    android:background="@drawable/bosque">
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text=" 5 SEGUNDOS"
+                android:text="@string/Segundos5M"
                 android:textSize="30sp"
                 android:textColor="#FAF9F9"/>
 
@@ -47,8 +47,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record52"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E" />
             </LinearLayout>
 
         </LinearLayout>
@@ -74,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text=" 10 SEGUNDOS"
+                android:text="@string/Segundos10M"
                 android:textSize="30sp"
                 android:textColor="#F4F5F6"/>
                 <TextView
@@ -82,7 +89,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record102"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -109,7 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" 15 SEGUNDOS"
+            android:text="@string/Segundos15M"
             android:textSize="30sp"
             android:textColor="#F4F5F6"/>
             <TextView
@@ -117,7 +131,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="30sp"
+                android:textSize="20sp"
+                android:textColor="#0E0E0E"/>
+            <TextView
+                android:id="@+id/record152"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20sp"
                 android:textColor="#0E0E0E"/>
         </LinearLayout>
 
@@ -142,7 +163,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" 20 SEGUNDOS"
+            android:text="@string/Segundos20M"
             android:textSize="30sp"
             android:textColor="#F4F5F6"/>
             <TextView
@@ -150,7 +171,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="30sp"
+                android:textSize="20sp"
+                android:textColor="#0E0E0E"/>
+            <TextView
+                android:id="@+id/record202"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20sp"
                 android:textColor="#0E0E0E"/>
         </LinearLayout>
 
@@ -175,7 +203,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" 30 SEGUNDOS"
+            android:text="@string/Segundos30M"
             android:textSize="30sp"
             android:textColor="#F4F5F6"/>
             <TextView
@@ -183,7 +211,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="30sp"
+                android:textSize="20sp"
+                android:textColor="#0E0E0E"/>
+            <TextView
+                android:id="@+id/record302"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20sp"
                 android:textColor="#0E0E0E"/>
         </LinearLayout>
 
@@ -210,7 +245,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" 40 Segundos"
+            android:text="@string/Segundos40M"
             android:textSize="30sp"
             android:textColor="#F4F5F6"/>
             <TextView
@@ -219,7 +254,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
 
-                android:textSize="30sp"
+                android:textSize="20sp"
+                android:textColor="#0E0E0E"/>
+            <TextView
+                android:id="@+id/record402"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:textSize="20sp"
                 android:textColor="#0E0E0E"/>
         </LinearLayout>
 
@@ -246,7 +289,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text=" 45 Segundos"
+                    android:text="@string/Segundos45M"
                     android:textSize="30sp"
                     android:textColor="#F4F5F6"/>
                 <TextView
@@ -254,7 +297,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record452"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -280,7 +330,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text=" 50 Segundos"
+                    android:text="@string/Segundos50M"
                     android:textSize="30sp"
                     android:textColor="#F4F5F6"/>
                 <TextView
@@ -288,7 +338,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record502"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -314,7 +371,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text=" 55 Segundos"
+                    android:text="@string/Segundos55M"
                     android:textSize="30sp"
                     android:textColor="#F4F5F6"/>
                 <TextView
@@ -322,7 +379,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record552"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -348,7 +412,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text=" 60 Segundos"
+                    android:text="@string/Segundos60M"
                     android:textSize="30sp"
                     android:textColor="#F4F5F6"/>
                 <TextView
@@ -356,7 +420,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record602"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -390,7 +461,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record652"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -424,7 +502,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record702"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -458,7 +543,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record752"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -492,7 +584,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record802"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -526,7 +625,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record902"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -560,7 +666,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record1002"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -594,7 +707,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record1102"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -628,7 +748,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record1202"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -662,7 +789,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record1802"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -696,7 +830,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record2402"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -730,7 +871,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record3002"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -764,7 +912,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record3602"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -798,7 +953,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record4802"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 
@@ -833,7 +995,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
+                    android:textColor="#0E0E0E"/>
+                <TextView
+                    android:id="@+id/record6002"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#0E0E0E"/>
             </LinearLayout>
 

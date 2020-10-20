@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9708491916754108~8193998877"/>
+        <activity android:name=".Recodconseguido"></activity>
         <activity android:name=".segundos5"></activity>
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait">

@@ -11,10 +11,32 @@
         android:id="@+id/editTextTextPersonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="200dp"
         android:layout_centerHorizontal="true"
-        android:hint="@android:string/"/>
+        android:ems="10"
+        android:hint="@string/nombre"
+        android:inputType="textPersonName"
+        android:textColorHint="@android:color/background_dark"/>
+
+    <ImageView
+        android:id="@+id/conseguido"
+        android:layout_width="254dp"
+        android:layout_height="280dp"
+        android:layout_below="@+id/editTextTextPersonName"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="64dp"
+        app:srcCompat="@drawable/logr_sin" />
+
+    <Button
+        android:id="@+id/buttonEnviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="260dp"
+        android:layout_marginBottom="70dp"
+        android:text="@string/botonenviar"
+        app:backgroundTint="#ef9a9a"/>
 </RelativeLayout>

@@ -1,42 +1,30 @@
 package com.punix.fingerclick;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.protobuf.StringValue;
 
-import java.sql.DatabaseMetaData;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.opencensus.stats.AggregationData;
-
 public class segundos5 extends AppCompatActivity {
 
+    private InterstitialAd mInterstitialAd;
     int sumatorio = 0;
     boolean tiempobajando = false;
     boolean finalizado = false;
@@ -53,6 +41,13 @@ public class segundos5 extends AppCompatActivity {
     int recordmundial;
     String recordactual;
     CountDownTimer yourCountDownTimer;
+    Button pantllaganadora;
+    Button anuncio;
+    String Puntuacion;
+    String Hayrecord;
+    String Sigueintentando;
+    String PalabraSegundos;
+    int contadoranuncio;
 
     /*******************************************************************************************************
      * EMPIEZA EL METODO ON CREATE
@@ -75,9 +70,21 @@ public class segundos5 extends AppCompatActivity {
          */
 
 
+        /**
+         * Parrafo que incorpora los anuncios
+         */
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-9708491916754108/3448421733");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         back = (ImageView) findViewById(R.id.back);
         volver = (ImageView) findViewById(R.id.devuelta);
+        Puntuacion = getString(R.string.Puntuación);
+        Hayrecord = getString(R.string.Hayrecord);
+        Sigueintentando = getString(R.string.Sigueintentando);
+        PalabraSegundos = getString(R.string.Segundos);
+        contadoranuncio = 0;
 
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,11 +93,14 @@ public class segundos5 extends AppCompatActivity {
                 finalizado = false;
                 sumatorio = 0;
                 tiempobajando = false;
-                Score.setText("Score " + sumatorio);
-                //back.setVisibility(View.INVISIBLE);
-                yourCountDownTimer.onFinish();
+                Score.setText(Puntuacion + " " + sumatorio);
+                yourCountDownTimer.cancel();
                 actualizarhora(0);
                 obtenerdatos();
+                contadoranuncio++;
+                if (contadoranuncio%2==0) {
+                    mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                }
 
             }
         });
@@ -100,7 +110,7 @@ public class segundos5 extends AppCompatActivity {
             public void onClick(View view) {
                 Intent myintent = new Intent(segundos5.this, MainActivity.class);
                 startActivity(myintent);
-                yourCountDownTimer.onFinish();
+                yourCountDownTimer.cancel();
 
             }
         });
@@ -111,15 +121,45 @@ public class segundos5 extends AppCompatActivity {
         Score = (TextView) findViewById(R.id.Score);
         WordlRecord = (TextView) findViewById(R.id.WorldRecod);
         Segundos = (TextView) findViewById(R.id.segundosRest);
+        pantllaganadora = (Button) findViewById(R.id.botonGanador);
+        anuncio = (Button) findViewById(R.id.anuncio);
+        pantllaganadora.setVisibility(View.INVISIBLE);
+        anuncio.setVisibility(View.INVISIBLE);
+
+        pantllaganadora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myintentGanador = new Intent(segundos5.this, Recodconseguido.class);
+                startActivity(myintentGanador);
+                Intent Ganador2 = new Intent(segundos5.this,Recodconseguido.class);
+                Ganador2.putExtra("Ganador",segundosrecibidos);
+                startActivity(Ganador2);
+            }
+        });
 
 
-        Score.setText("Score  0");
+        anuncio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                }
+            }
+        });
+
+
+
+        Score.setText(Puntuacion + " " +  sumatorio);
 
             botonpulsar.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
                     if (!tiempobajando && !finalizado) {
+                        sumatorio++;
+                        Score.setText(Puntuacion +" "+ sumatorio);
                         recordmundial = Integer.parseInt(String.valueOf(WordlRecord.getText()));
 
                         yourCountDownTimer = new CountDownTimer(segundosrecibidos, 1000) {
@@ -141,9 +181,13 @@ public class segundos5 extends AppCompatActivity {
                                 user.put(segundosrecibidos/1000 + " segundos", String.valueOf(sumatorio));
                                 if (sumatorio > recordmundial){
                                     actualizarbbdd();
-                                    Toast.makeText(getApplicationContext(), "Recod conseguido!", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), Hayrecord, Toast.LENGTH_LONG).show();
+                                    pantllaganadora.callOnClick();
+
+
                                 }else{
-                                    Toast.makeText(getApplicationContext(), "Sigue intentandolo!", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), Sigueintentando, Toast.LENGTH_LONG).show();
+                                    anuncio.callOnClick();
                                 }
 
                             }
@@ -153,7 +197,7 @@ public class segundos5 extends AppCompatActivity {
 
                     if (tiempobajando) {
                         sumatorio++;
-                        Score.setText("Score " + sumatorio);
+                        Score.setText(Puntuacion+ " " + sumatorio);
 
                     }
                 }
@@ -179,15 +223,11 @@ public class segundos5 extends AppCompatActivity {
               segundosiniciales = segundorecibidos2;
             obtenerdatos();
 
-
-
-
-
     }
 
     public void actualizarhora(int segundos) {
 
-        Segundos.setText("Segundos "+ String.valueOf(segundos));
+        Segundos.setText(PalabraSegundos+ " "+ String.valueOf(segundos));
 
     }
 
@@ -215,6 +255,7 @@ public class segundos5 extends AppCompatActivity {
         });
 
         }
+
 }
 
 

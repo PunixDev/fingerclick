@@ -5,7 +5,7 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bosque">
+    android:background="@drawable/fondoprimera">
 
     <TextView
         android:id="@+id/segundosRest"
@@ -14,7 +14,7 @@
         android:layout_above="@+id/botonaco"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        android:text="Segundos "
+        android:text="@string/Segundos"
         android:textAlignment="center"
         android:textColor="#0C0C0C"
         android:textSize="36sp"
@@ -65,7 +65,7 @@
             android:id="@+id/Score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Score"
+            android:text="@string/Puntuación"
             android:textAlignment="center"
             android:textColor="#0B0B0B"
             android:textSize="36sp"
@@ -80,6 +80,17 @@
             android:text= "0"
             android:textSize="36sp"
             android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/botonGanador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+        <Button
+            android:id="@+id/anuncio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
     </LinearLayout>
 
 </RelativeLayout>

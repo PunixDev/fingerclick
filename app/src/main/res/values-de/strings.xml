@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">fingerclick</string>
+    <string name="nombre">Name (Ort)</string>
+    <string name="botonenviar">Senden</string>
+    <string name="recod_mundial">World record</string>
+    <string name="Segundos">Sekunden</string>
+    <string name="Segundos5M">" 5 SEKUNDEN"</string>
+    <string name="Segundos10M">" 10 SEKUNDEN"</string>
+    <string name="Segundos15M">" 15 SEKUNDEN"</string>
+    <string name="Segundos20M">" 20 SEKUNDEN"</string>
+    <string name="Segundos30M">" 30 SEKUNDEN"</string>
+    <string name="Segundos40M">" 40 SEKUNDEN"</string>
+    <string name="Segundos45M">" 45 SEKUNDEN"</string>
+    <string name="Segundos50M">" 50 SEKUNDEN"</string>
+    <string name="Segundos55M">" 55 SEKUNDEN"</string>
+    <string name="Segundos60M">" 60 SEKUNDEN"</string>
+    <string name="Puntuación">PUNKTE</string>
+    <string name="Sigueintentando">Weiter versuchen!</string>
+    <string name="Hayrecord">Recod erreicht!</string>
+    <string name="recod_mundial0">World record 0</string>
+</resources>

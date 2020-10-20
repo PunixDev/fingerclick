@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
     String [] claves = { "5 segundos","10 segundos","15 segundos","20 segundos","30 segundos","40 segundos", "45 segundos", "50 segundos","55 segundos","60 segundos","65 segundos","70 segundos","75 segundos","80 segundos","90 segundos","100 segundos","110 segundos","120 segundos","180 segundos","240 segundos","300 segundos","360 segundos","480 segundos","600 segundos"};
     int [] tiempos = {5,10,15,20,30,40,45,50,55,60,65,70,75,80,90,100,110,120,180,240,300,360,480,600};
     public  String recod;
+    public  String recod2;
+
 
     TextView Tsegundos5 ;
     TextView Tsegundos10;
@@ -75,6 +77,34 @@ public class MainActivity extends AppCompatActivity {
     TextView Tsegundos480;
     TextView Tsegundos600;
 
+    TextView Tsegundos52 ;
+    TextView Tsegundos102;
+    TextView Tsegundos152;
+    TextView Tsegundos202;
+    TextView Tsegundos302;
+    TextView Tsegundos402;
+    TextView Tsegundos452;
+    TextView Tsegundos502;
+    TextView Tsegundos552;
+    TextView Tsegundos602;
+    TextView Tsegundos652;
+    TextView Tsegundos702;
+    TextView Tsegundos752;
+    TextView Tsegundos802;
+    TextView Tsegundos902;
+    TextView Tsegundos1002;
+    TextView Tsegundos1102;
+    TextView Tsegundos1202;
+    TextView Tsegundos1802;
+    TextView Tsegundos2402;
+    TextView Tsegundos3002;
+    TextView Tsegundos3602;
+    TextView Tsegundos4802;
+    TextView Tsegundos6002;
+
+    String World_Record;
+    String World_Record0;
+
 
 
     @Override
@@ -82,6 +112,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+
+        World_Record = getString(R.string.recod_mundial);
+        World_Record0 = getString(R.string.recod_mundial0);
 
 
         /**************************************************************************************
@@ -143,6 +176,32 @@ public class MainActivity extends AppCompatActivity {
         Tsegundos360 = (TextView) findViewById(R.id.record360);
         Tsegundos480 = (TextView) findViewById(R.id.record480);
         Tsegundos600 = (TextView) findViewById(R.id.record600);
+
+
+        Tsegundos52 = (TextView) findViewById(R.id.record52);
+        Tsegundos102 = (TextView) findViewById(R.id.record102);
+        Tsegundos152 = (TextView) findViewById(R.id.record152);
+        Tsegundos202 = (TextView) findViewById(R.id.record202);
+        Tsegundos302 = (TextView) findViewById(R.id.record302);
+        Tsegundos402 = (TextView) findViewById(R.id.record402);
+        Tsegundos452 = (TextView) findViewById(R.id.record452);
+        Tsegundos502 = (TextView) findViewById(R.id.record502);
+        Tsegundos552 = (TextView) findViewById(R.id.record552);
+        Tsegundos602 = (TextView) findViewById(R.id.record602);
+        Tsegundos652 = (TextView) findViewById(R.id.record652);
+        Tsegundos702 = (TextView) findViewById(R.id.record702);
+        Tsegundos752 = (TextView) findViewById(R.id.record752);
+        Tsegundos802 = (TextView) findViewById(R.id.record802);
+        Tsegundos902 = (TextView) findViewById(R.id.record902);
+        Tsegundos1002 = (TextView) findViewById(R.id.record1002);
+        Tsegundos1102 = (TextView) findViewById(R.id.record1102);
+        Tsegundos1202 = (TextView) findViewById(R.id.record1202);
+        Tsegundos1802 = (TextView) findViewById(R.id.record1802);
+        Tsegundos2402 = (TextView) findViewById(R.id.record2402);
+        Tsegundos3002 = (TextView) findViewById(R.id.record3002);
+        Tsegundos3602 = (TextView) findViewById(R.id.record3602);
+        Tsegundos4802 = (TextView) findViewById(R.id.record4802);
+        Tsegundos6002 = (TextView) findViewById(R.id.record6002);
 
 
 
@@ -465,152 +524,267 @@ public class MainActivity extends AppCompatActivity {
 
                     if (clave.equals(claves[0])){
                         if (recod != null) {
-                            Tsegundos5.setText("World record " + recod);
+                            Tsegundos5.setText("  " + World_Record +" " +recod);
                         }else{
-                            Tsegundos5.setText("World record 0");
+                            Tsegundos5.setText("  " + World_Record0);
                             }
                     }else if(clave.equals(claves[1])){
                         if (recod != null) {
-                        Tsegundos10.setText("World record " +recod);
+                        Tsegundos10.setText("  " + World_Record +" " +recod);
                         }else{
-                            Tsegundos10.setText("World record 0");
+                            Tsegundos10.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[2])) {
                         if (recod != null) {
-                            Tsegundos15.setText("World record " + recod);
+                            Tsegundos15.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos15.setText("World record 0");
+                            Tsegundos15.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[3])) {
                         if (recod != null) {
-                            Tsegundos20.setText("World record " + recod);
+                            Tsegundos20.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos20.setText("World record 0");
+                            Tsegundos20.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[4])) {
                         if (recod != null) {
-                            Tsegundos30.setText("World record " + recod);
+                            Tsegundos30.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos30.setText("World record 0");
+                            Tsegundos30.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[5])) {
                         if (recod != null) {
-                            Tsegundos40.setText("World record " + recod);
+                            Tsegundos40.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos40.setText("World record 0");
+                            Tsegundos40.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[6])) {
                         if (recod != null) {
-                            Tsegundos45.setText("World record " + recod);
+                            Tsegundos45.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos45.setText("World record 0");
+                            Tsegundos45.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[7])) {
                         if (recod != null) {
-                            Tsegundos50.setText("World record " + recod);
+                            Tsegundos50.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos50.setText("World record 0");
+                            Tsegundos50.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[8])) {
                         if (recod != null) {
-                            Tsegundos55.setText("World record " + recod);
+                            Tsegundos55.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos55.setText("World record 0");
+                            Tsegundos55.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[9])) {
                         if (recod != null) {
-                            Tsegundos60.setText("World record " + recod);
+                            Tsegundos60.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos60.setText("World record 0");
+                            Tsegundos60.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[10])) {
                         if (recod != null) {
-                            Tsegundos65.setText("World record " + recod);
+                            Tsegundos65.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos65.setText("World record 0");
+                            Tsegundos65.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[11])) {
                         if (recod != null) {
-                            Tsegundos70.setText("World record " + recod);
+                            Tsegundos70.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos70.setText("World record 0");
+                            Tsegundos70.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[12])) {
                         if (recod != null) {
-                            Tsegundos75.setText("World record " + recod);
+                            Tsegundos75.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos75.setText("World record 0");
+                            Tsegundos75.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[13])) {
                         if (recod != null) {
-                            Tsegundos80.setText("World record " + recod);
+                            Tsegundos80.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos80.setText("World record 0");
+                            Tsegundos80.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[14])) {
                         if (recod != null) {
-                            Tsegundos90.setText("World record " + recod);
+                            Tsegundos90.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos90.setText("World record 0");
+                            Tsegundos90.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[15])) {
                         if (recod != null) {
-                            Tsegundos100.setText("World record " + recod);
+                            Tsegundos100.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos100.setText("World record 0");
+                            Tsegundos100.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[16])) {
                         if (recod != null) {
-                            Tsegundos110.setText("World record " + recod);
+                            Tsegundos110.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos110.setText("World record 0");
+                            Tsegundos110.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[17])) {
                         if (recod != null) {
-                            Tsegundos120.setText("World record " + recod);
+                            Tsegundos120.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos120.setText("World record 0");
+                            Tsegundos120.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[18])) {
                         if (recod != null) {
-                            Tsegundos180.setText("World record " + recod);
+                            Tsegundos180.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos180.setText("World record 0");
+                            Tsegundos180.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[19])) {
                         if (recod != null) {
-                            Tsegundos240.setText("World record " + recod);
+                            Tsegundos240.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos240.setText("World record 0");
+                            Tsegundos240.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[20])) {
                         if (recod != null) {
-                            Tsegundos300.setText("World record " + recod);
+                            Tsegundos300.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos300.setText("World record 0");
+                            Tsegundos300.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[21])) {
                         if (recod != null) {
-                            Tsegundos360.setText("World record " + recod);
+                            Tsegundos360.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos360.setText("World record 0");
+                            Tsegundos360.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[22])) {
                         if (recod != null) {
-                            Tsegundos480.setText("World record " + recod);
+                            Tsegundos480.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos480.setText("World record 0");
+                            Tsegundos480.setText("  " + World_Record0);
                         }
                     }else if(clave.equals(claves[23])) {
                         if (recod != null) {
-                            Tsegundos600.setText("World record " + recod);
+                            Tsegundos600.setText("  " + World_Record +" " +recod);
                         } else {
-                            Tsegundos600.setText("World record 0");
+                            Tsegundos600.setText("  " + World_Record0);
                         }
                     }
 
                 }
             });
+
+        /**
+         * Se recuperan las personas que tienen el record
+         */
+
+        db.collection("Personas").document(tiemposcal).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                recod2 = (String) documentSnapshot.get(clave);
+                Log.d("segundero2", "record " + recod);
+
+                if (clave.equals(claves[0])){
+                    if (recod2 != null) {
+                        Tsegundos52.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[1])){
+                    if (recod2 != null) {
+                        Tsegundos102.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[2])) {
+                    if (recod2 != null) {
+                        Tsegundos152.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[3])) {
+                    if (recod2 != null) {
+                        Tsegundos202.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[4])) {
+                    if (recod2 != null) {
+                        Tsegundos302.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[5])) {
+                    if (recod2 != null) {
+                        Tsegundos402.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[6])) {
+                    if (recod2 != null) {
+                        Tsegundos452.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[7])) {
+                    if (recod2 != null) {
+                        Tsegundos502.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[8])) {
+                    if (recod2 != null) {
+                        Tsegundos552.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[9])) {
+                    if (recod2 != null) {
+                        Tsegundos602.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[10])) {
+                    if (recod2 != null) {
+                        Tsegundos652.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[11])) {
+                    if (recod2 != null) {
+                        Tsegundos702.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[12])) {
+                    if (recod2 != null) {
+                        Tsegundos752.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[13])) {
+                    if (recod2 != null) {
+                        Tsegundos802.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[14])) {
+                    if (recod2 != null) {
+                        Tsegundos902.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[15])) {
+                    if (recod2 != null) {
+                        Tsegundos1002.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[16])) {
+                    if (recod2 != null) {
+                        Tsegundos1102.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[17])) {
+                    if (recod2 != null) {
+                        Tsegundos1202.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[18])) {
+                    if (recod2 != null) {
+                        Tsegundos1802.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[19])) {
+                    if (recod2 != null) {
+                        Tsegundos2402.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[20])) {
+                    if (recod2 != null) {
+                        Tsegundos3002.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[21])) {
+                    if (recod2 != null) {
+                        Tsegundos3602.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[22])) {
+                    if (recod2 != null) {
+                        Tsegundos4802.setText("  " +recod2);
+                    }
+                }else if(clave.equals(claves[23])) {
+                    if (recod2 != null) {
+                        Tsegundos6002.setText("  " +recod2);
+                    }
+                }
+
+            }
+        });
+
+
+
+
 
     }
 }
