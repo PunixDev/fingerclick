@@ -75,7 +75,8 @@ public class segundos5 extends AppCompatActivity {
          */
 
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-9708491916754108/3448421733");
+        //mInterstitialAd.setAdUnitId("ca-app-pub-9708491916754108/3448421733");
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         back = (ImageView) findViewById(R.id.back);

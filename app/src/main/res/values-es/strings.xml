@@ -3,7 +3,7 @@
     <string name="app_name">fingerclick</string>
     <string name="nombre">Nombre(Localización)</string>
     <string name="botonenviar">Enviar</string>
-    <string name="recod_mundial">Record Mundial</string>
+    <string name="recod_mundial">Récord Mundial</string>
     <string name="Segundos">Segundos</string>
     <string name="Segundos5M">" 5 SEGUNDOS"</string>
     <string name="Segundos10M">" 10 SEGUNDOS"</string>
@@ -16,7 +16,7 @@
     <string name="Segundos55M">" 55 SEGUNDOS"</string>
     <string name="Segundos60M">" 60 SEGUNDOS"</string>
     <string name="Puntuación">PUNTOS</string>
-    <string name="Hayrecord">Recod conseguido!</string>
+    <string name="Hayrecord">Récod conseguido!</string>
     <string name="Sigueintentando">Sigue intentandolo!</string>
-    <string name="recod_mundial0">Record Mundial 0</string>
+    <string name="recod_mundial0">Récord Mundial 0</string>
 </resources>
