@@ -18,6 +18,9 @@
     <string name="Puntuación">SCORE</string>
     <string name="Hayrecord">Recod achieved!</string>
     <string name="Sigueintentando">Keep trying</string>
+    <string name="Hasganado">You win!</string>
+    <string name="unocontra1">1VS1</string>
+    <string name="Bienvenido">WELCOME!</string>
 
 
     World record 0

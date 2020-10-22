@@ -19,4 +19,7 @@
     <string name="Sigueintentando">Weiter versuchen!</string>
     <string name="Hayrecord">Recod erreicht!</string>
     <string name="recod_mundial0">World record 0</string>
+    <string name="Hasganado">" du gewinnst!"</string>
+    <string name="unocontra1">1VS1</string>
+    <string name="Bienvenido">WILLKOMMEN</string>
 </resources>

@@ -111,7 +111,9 @@ public class segundos5 extends AppCompatActivity {
             public void onClick(View view) {
                 Intent myintent = new Intent(segundos5.this, MainActivity.class);
                 startActivity(myintent);
-                yourCountDownTimer.cancel();
+                if (tiempobajando) {
+                    yourCountDownTimer.cancel();
+                }
 
             }
         });

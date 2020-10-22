@@ -63,9 +63,6 @@ public class Recodconseguido extends AppCompatActivity {
             }
         });
 
-
-
-
     }
 
 

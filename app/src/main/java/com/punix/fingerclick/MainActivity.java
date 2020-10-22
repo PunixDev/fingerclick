@@ -1,5 +1,6 @@
 package com.punix.fingerclick;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -151,6 +152,21 @@ public class MainActivity extends AppCompatActivity {
         Button segundos360 = (Button) findViewById(R.id.button22);
         Button segundos480 = (Button) findViewById(R.id.button23);
         Button segundos600 = (Button) findViewById(R.id.button24);
+
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back button event
+                Intent myintent = new Intent(MainActivity.this, PantallaInicial.class);
+                startActivity(myintent);
+
+            }
+        };
+
+
+
+
 
         Tsegundos5 = (TextView) findViewById(R.id.record5);
         Tsegundos10 = (TextView) findViewById(R.id.record10);
