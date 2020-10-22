@@ -2,6 +2,7 @@ package com.punix.fingerclick;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.gridlayout.widget.GridLayout;
 import android.os.CountDownTimer;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class JuegoRandom extends AppCompatActivity {
@@ -41,11 +43,17 @@ public class JuegoRandom extends AppCompatActivity {
     ImageView Random17;
     ImageView Random18;
     GridLayout gridLayout;
-    Button boton;
+    ImageButton boton;
     CountDownTimer EsteCountDownTimer;
     CountDownTimer AumentarVelocidad;
+    CountDownTimer segundero;
     public boolean [] Imaggensi = {};
     int tiempoinicial;
+    ImageView backR;
+    ImageView volverR;
+    TextView Segundos;
+    String PalabraSegundos;
+    int segundos = 0;
 
 
 
@@ -73,9 +81,14 @@ public class JuegoRandom extends AppCompatActivity {
         Random16 = (ImageView) findViewById(R.id.Random16);
         Random17 = (ImageView) findViewById(R.id.Random17);
         Random18 = (ImageView) findViewById(R.id.Random18);
-        boton = (Button) findViewById(R.id.buttonContador);
+        boton = (ImageButton) findViewById(R.id.buttonContador);
+        volverR = (ImageView) findViewById(R.id.devueltaR);
+        backR = (ImageView) findViewById(R.id.backR);
         gridLayout = (GridLayout) findViewById(R.id.Gridlayout);
         tiempoinicial = 1000;
+        Segundos = (TextView) findViewById(R.id.segundosR);
+        PalabraSegundos = getString(R.string.Segundos);
+        actualizarhora(0);
 
         Imaggensi = new boolean[]{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
 
@@ -84,6 +97,45 @@ public class JuegoRandom extends AppCompatActivity {
             ImageView counter = (ImageView) gridLayout.getChildAt(i);
             counter.setImageDrawable(null);
         }
+        /************************************************************************************************
+         * boton para volver a jugar
+         *********************************************************************************************/
+
+        volverR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < Imaggensi.length-1; i++) {
+                    Imaggensi[i] = false;
+                }
+                finJuego = false;
+
+                for(int i=0; i<gridLayout.getChildCount(); i++) {
+                    ImageView counter = (ImageView) gridLayout.getChildAt(i);
+                    counter.setImageDrawable(null);
+                }
+
+                AumentarVelocidad.cancel();
+                EsteCountDownTimer.cancel();
+                segundero.cancel();
+                tiempoinicial = 1000;
+                actualizarhora(0);
+                primeravez = true;
+
+            }
+        });
+        /************************************************************************************************
+         * boton para volver a atras
+         *********************************************************************************************/
+        backR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myintent = new Intent(JuegoRandom.this, PantallaInicial.class);
+                startActivity(myintent);
+                AumentarVelocidad.cancel();
+                EsteCountDownTimer.cancel();
+                segundero.cancel();
+            }
+        });
 
         /************************************************************************************************
          * boton para empezar
@@ -92,17 +144,41 @@ public class JuegoRandom extends AppCompatActivity {
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!finJuego) {
+                if(!finJuego && primeravez) {
                     AumentarVelocidad.start();
                     EsteCountDownTimer.start();
+                    segundero.start();
+                    primeravez = false;
                 }
 
             }
         });
 
         /************************************************************************************************
-         * boton para empezar
+         *
          *********************************************************************************************/
+
+
+        /************************************************************************************************
+         * countsown segundos
+         *********************************************************************************************/
+
+        segundero = new CountDownTimer(1000000000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                segundos++;
+                actualizarhora(segundos);
+
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        };
+
+
+
 
 
         /************************************************************************************************
@@ -133,6 +209,8 @@ public class JuegoRandom extends AppCompatActivity {
                                  Toast Ganador1 = Toast.makeText(getApplicationContext(), "Se acabo", Toast.LENGTH_LONG);
                                  Ganador1.show();
                                  AumentarVelocidad.cancel();
+                                 segundero.cancel();
+                                 primeravez = true;
                              }else {
                                  EsteCountDownTimer.start();
                                  Toast contador = Toast.makeText(getApplicationContext(), "Ha subido "+tiempoinicial, Toast.LENGTH_LONG);
@@ -162,6 +240,8 @@ public class JuegoRandom extends AppCompatActivity {
                         Toast Ganador1 = Toast.makeText(getApplicationContext(), "Se acabo", Toast.LENGTH_LONG);
                         Ganador1.show();
                         AumentarVelocidad.cancel();
+                        segundero.cancel();
+                        primeravez = true;
                     }else {
                         EsteCountDownTimer.start();
                         Toast contador = Toast.makeText(getApplicationContext(), "Ha subido "+tiempoinicial, Toast.LENGTH_LONG);
@@ -233,6 +313,14 @@ public class JuegoRandom extends AppCompatActivity {
 
 
         return finJuego;
+    }
+
+    public void actualizarhora(int segundos) {
+
+
+        Segundos.setText(PalabraSegundos+ " "+ String.valueOf(segundos));
+
+
     }
 
 
