@@ -99,7 +99,7 @@ public class segundos5 extends AppCompatActivity {
                 actualizarhora(0);
                 obtenerdatos();
                 contadoranuncio++;
-                if (contadoranuncio%2==0) {
+                if (contadoranuncio%3==0) {
                     mInterstitialAd.loadAd(new AdRequest.Builder().build());
                 }
 

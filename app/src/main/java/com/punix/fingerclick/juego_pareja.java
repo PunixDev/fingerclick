@@ -23,6 +23,7 @@ import java.util.Map;
 
 public class juego_pareja extends AppCompatActivity {
 
+
     int sumatorio1 = 0;
     int sumatorio2 = 0;
     boolean tiempobajando = false;
@@ -42,6 +43,9 @@ public class juego_pareja extends AppCompatActivity {
     CountDownTimer yourCountDownTimer;
     String Hasganado;
     String PalabraSegundos;
+    private InterstitialAd mInterstitialAd;
+    int contadoranuncio;
+    Button anuncio;
 
 
     @Override
@@ -66,6 +70,23 @@ public class juego_pareja extends AppCompatActivity {
         Score2.setText(String.valueOf(sumatorio2));
 
 
+        mInterstitialAd = new InterstitialAd(this);
+        //mInterstitialAd.setAdUnitId("ca-app-pub-9708491916754108/3448421733");
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+          anuncio = (Button) findViewById(R.id.botonanuncio);
+        anuncio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+               }
+           }
+        });
+
+
         volverP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +101,10 @@ public class juego_pareja extends AppCompatActivity {
                 Pulsador1 = false;
                 Pulsador2 = false;
                 actualizarhora(0);
+                contadoranuncio++;
+                if (contadoranuncio%2==0) {
+                    mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                }
             }
         });
 
@@ -129,6 +154,9 @@ public class juego_pareja extends AppCompatActivity {
                                     Ganador1.setGravity(Gravity.BOTTOM, 0, 0);
                                     Ganador1.setDuration(Toast.LENGTH_LONG);
                                     Ganador1.show();
+                                    if (contadoranuncio%3==0) {
+                                        anuncio.callOnClick();
+                                    }
                                 }else{
 
                                     Toast Ganador2 = Toast.makeText(getApplicationContext(), Hasganado , Toast.LENGTH_LONG);
@@ -137,6 +165,9 @@ public class juego_pareja extends AppCompatActivity {
                                     Ganador2.setGravity(Gravity.TOP, 0, 0);
                                     Ganador2.setDuration(Toast.LENGTH_LONG);
                                     Ganador2.show();
+                                    if (contadoranuncio%3==0) {
+                                        anuncio.callOnClick();
+                                    }
                                 }
                             }
                         }.start();
@@ -183,6 +214,9 @@ public class juego_pareja extends AppCompatActivity {
                                     Ganador1.setGravity(Gravity.BOTTOM, 0, 0);
                                     Ganador1.setDuration(Toast.LENGTH_LONG);
                                     Ganador1.show();
+                                    if (contadoranuncio%3==0) {
+                                        anuncio.callOnClick();
+                                    }
                                 }else{
 
                                     Toast Ganador2 = Toast.makeText(getApplicationContext(), Hasganado , Toast.LENGTH_LONG);
@@ -191,6 +225,9 @@ public class juego_pareja extends AppCompatActivity {
                                     Ganador2.setGravity(Gravity.TOP, 0, 0);
                                     Ganador2.setDuration(Toast.LENGTH_LONG);
                                     Ganador2.show();
+                                    if (contadoranuncio%3==0) {
+                                        anuncio.callOnClick();
+                                    }
                                 }
                             }
                         }.start();

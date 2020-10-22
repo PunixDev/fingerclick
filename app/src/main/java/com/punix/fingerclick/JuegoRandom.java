@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.gridlayout.widget.GridLayout;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class JuegoRandom extends AppCompatActivity {
 
@@ -54,6 +59,11 @@ public class JuegoRandom extends AppCompatActivity {
     TextView Segundos;
     String PalabraSegundos;
     int segundos = 0;
+    int contadoranuncio;
+
+    FirebaseFirestore db;
+    private InterstitialAd mInterstitialAd;
+    Button anuncio;
 
 
 
@@ -62,6 +72,34 @@ public class JuegoRandom extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_random);
         getSupportActionBar().hide();
+
+        /**
+         * parrafo que define la bbdd
+         */
+        db = FirebaseFirestore.getInstance();
+
+        /**
+         *
+         */
+        mInterstitialAd = new InterstitialAd(this);
+        //mInterstitialAd.setAdUnitId("ca-app-pub-9708491916754108/3448421733");
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        contadoranuncio = 0;
+        anuncio = (Button) findViewById(R.id.buttonanuncio);
+        anuncio.setVisibility(View.INVISIBLE);
+        anuncio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                }
+            }
+        });
+
+
 
         Random1 = (ImageView) findViewById(R.id.Random1);
         Random2 = (ImageView) findViewById(R.id.Random2);
@@ -120,6 +158,10 @@ public class JuegoRandom extends AppCompatActivity {
                 tiempoinicial = 1000;
                 actualizarhora(0);
                 primeravez = true;
+                contadoranuncio++;
+                if (contadoranuncio%3==0) {
+                    mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                }
 
             }
         });
@@ -211,6 +253,9 @@ public class JuegoRandom extends AppCompatActivity {
                                  AumentarVelocidad.cancel();
                                  segundero.cancel();
                                  primeravez = true;
+                                 if (contadoranuncio%3==0) {
+                                     anuncio.callOnClick();
+                                 }
                              }else {
                                  EsteCountDownTimer.start();
                                  Toast contador = Toast.makeText(getApplicationContext(), "Ha subido "+tiempoinicial, Toast.LENGTH_LONG);
