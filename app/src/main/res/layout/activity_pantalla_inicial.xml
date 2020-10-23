@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PantallaInicial"
-    android:background="@drawable/bosque">
+    android:background="@drawable/fondoprimera">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.75031847" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
@@ -36,8 +36,8 @@
         app:layout_constraintGuide_percent="0.43" />
 
     <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="438dp"
+        android:layout_width="354dp"
+        android:layout_height="492dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,72 +55,90 @@
                 android:layout_width="101dp"
                 android:layout_height="105dp"
                 android:background="@drawable/playjugar" />
+
             <TextView
                 android:id="@+id/textView34"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:text="@string/recod_mundial"
-                android:textSize="30sp"
                 android:textColor="#040404"
-                android:layout_marginLeft="10dp"/>
+                android:textSize="30sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/buttonv1v"
                 android:layout_width="101dp"
                 android:layout_height="105dp"
                 android:background="@drawable/playjugar" />
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:text="@string/unocontra1"
-                android:textSize="30sp"
                 android:textColor="#040404"
-                android:layout_marginLeft="10dp"/>
+                android:textSize="30sp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/buttonrand"
                 android:layout_width="101dp"
                 android:layout_height="105dp"
                 android:background="@drawable/playjugar" />
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/unocontra1"
-                android:textSize="30sp"
-                android:textColor="#040404"
-                android:layout_marginLeft="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/LaJaula"
+                    android:textColor="#040404"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/recordRandom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#0E0E0E"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/recordRPersona"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#0E0E0E"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Bienvenido"
-        android:textSize="60sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textColor="#F44336"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

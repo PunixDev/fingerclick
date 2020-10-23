@@ -21,5 +21,6 @@
     <string name="recod_mundial0">Récord Mundial 0</string>
     <string name="Hasganado">Has ganado!</string>
     <string name="unocontra1">1VS1</string>
-    <string name="Bienvenido">BIENVENID@!</string>
+    <string name="Bienvenido">Elige tu juego</string>
+    <string name="LaJaula">La jaula</string>
 </resources>

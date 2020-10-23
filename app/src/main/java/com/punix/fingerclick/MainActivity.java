@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
     TextView Tsegundos3602;
     TextView Tsegundos4802;
     TextView Tsegundos6002;
-
     String World_Record;
     String World_Record0;
 

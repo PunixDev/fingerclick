@@ -4,10 +4,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class PantallaInicial extends AppCompatActivity {
+
+    FirebaseFirestore db;
+    public  String recod;
+    public  String recod2;
+    TextView recordRandom ;
+    TextView recordRPersona;
+    String World_Record0;
+    String World_Record;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +33,18 @@ public class PantallaInicial extends AppCompatActivity {
         Button botonWR = (Button) findViewById(R.id.buttonWR);
         Button boton1v1 = (Button) findViewById(R.id.buttonv1v);
         Button buttonrand = (Button) findViewById(R.id.buttonrand);
+
+        recordRandom = (TextView) findViewById(R.id.recordRandom);
+        recordRPersona = (TextView) findViewById(R.id.recordRPersona);
+
+        World_Record0 = getString(R.string.recod_mundial0);
+        World_Record = getString(R.string.recod_mundial);
+
+        /**************************************************************************************
+         * PARRAFO QUE RECUPERA TODOS LOS DATOS DE LA BBDD
+         ************************************************************************************/
+        db = FirebaseFirestore.getInstance();
+        recuperardatos();
 
 
         botonWR.setOnClickListener(new View.OnClickListener() {
@@ -45,4 +71,40 @@ public class PantallaInicial extends AppCompatActivity {
             }
         });
     }
+
+    public void recuperardatos() {
+
+        /**
+         * HE CREADO DOS ARRAYS Y CON ELLOS VAMOS A OBTENER TODOS LOS RECODS
+         */
+        /**
+         * PEDAZO DE CODIGO CON EL QUE CONSEGUIMOS RECUPERAR UN DATO DE LA BASE DE DATOS BUSCANDO DENTRO DEL documentSnapshot
+         */
+        db.collection("Random").document("Random").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                recod = (String) documentSnapshot.get("Ramdom");
+
+                    if (recod != null) {
+                        recordRandom.setText("  " + World_Record + " " + recod);
+                    } else {
+                        recordRandom.setText("  " + World_Record0);
+                }
+            }
+        });
+
+        db.collection("Personas").document("Random").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                recod2 = (String) documentSnapshot.get("Random");
+
+                if (recod2 != null) {
+                    recordRPersona.setText("  " + recod2);
+                } else {
+                    recordRPersona.setText("  " + recod2);
+                }
+            }
+        });
+    }
+
 }

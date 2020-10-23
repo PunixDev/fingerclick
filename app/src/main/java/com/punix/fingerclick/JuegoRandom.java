@@ -18,12 +18,16 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class JuegoRandom extends AppCompatActivity {
 
 
-    boolean Hayjuego;
     int contador;
     int numeroRandom;
     int contadorvisible;
@@ -57,13 +61,19 @@ public class JuegoRandom extends AppCompatActivity {
     ImageView backR;
     ImageView volverR;
     TextView Segundos;
+    Button pantllaganadora;
     String PalabraSegundos;
+    TextView WordlRecord;
     int segundos = 0;
+    int recordmundial;
     int contadoranuncio;
-
     FirebaseFirestore db;
     private InterstitialAd mInterstitialAd;
     Button anuncio;
+    Map<String, String> user = new HashMap<>();
+    String recordactual;
+    String Hayrecord;
+    String Sigueintentando;
 
 
 
@@ -72,6 +82,7 @@ public class JuegoRandom extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_random);
         getSupportActionBar().hide();
+
 
         /**
          * parrafo que define la bbdd
@@ -122,13 +133,18 @@ public class JuegoRandom extends AppCompatActivity {
         boton = (ImageButton) findViewById(R.id.buttonContador);
         volverR = (ImageView) findViewById(R.id.devueltaR);
         backR = (ImageView) findViewById(R.id.backR);
+        WordlRecord = (TextView) findViewById(R.id.WordlRecord2);
+        pantllaganadora = (Button) findViewById(R.id.pantallaganadora);
         gridLayout = (GridLayout) findViewById(R.id.Gridlayout);
         tiempoinicial = 1000;
         Segundos = (TextView) findViewById(R.id.segundosR);
         PalabraSegundos = getString(R.string.Segundos);
         actualizarhora(0);
-
         Imaggensi = new boolean[]{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
+        pantllaganadora.setVisibility(View.INVISIBLE);
+        Hayrecord = getString(R.string.Hayrecord);
+        Sigueintentando = getString(R.string.Sigueintentando);
+        obtenerdatos();
 
 
         for(int i=0; i<gridLayout.getChildCount(); i++) {
@@ -162,6 +178,7 @@ public class JuegoRandom extends AppCompatActivity {
                 if (contadoranuncio%3==0) {
                     mInterstitialAd.loadAd(new AdRequest.Builder().build());
                 }
+                segundos = 0;
 
             }
         });
@@ -191,6 +208,7 @@ public class JuegoRandom extends AppCompatActivity {
                     EsteCountDownTimer.start();
                     segundero.start();
                     primeravez = false;
+                    recordmundial = Integer.parseInt(String.valueOf(WordlRecord.getText()));
                 }
 
             }
@@ -248,18 +266,25 @@ public class JuegoRandom extends AppCompatActivity {
                          public void onFinish() {
                              chequearsi3();
                              if (finJuego){
-                                 Toast Ganador1 = Toast.makeText(getApplicationContext(), "Se acabo", Toast.LENGTH_LONG);
-                                 Ganador1.show();
+//                                 Toast Ganador1 = Toast.makeText(getApplicationContext(), "Se acabo", Toast.LENGTH_LONG);
+//                                 Ganador1.show();
                                  AumentarVelocidad.cancel();
                                  segundero.cancel();
                                  primeravez = true;
-                                 if (contadoranuncio%3==0) {
-                                     anuncio.callOnClick();
+                                 user.put("Ramdom", String.valueOf(segundos));
+                                 if (segundos > recordmundial){
+                                     actualizarbbdd();
+                                     Toast.makeText(getApplicationContext(), Hayrecord, Toast.LENGTH_LONG).show();
+                                     pantllaganadora.callOnClick();
+                                 }else{
+                                     Toast.makeText(getApplicationContext(), Sigueintentando, Toast.LENGTH_LONG).show();
+                                     if (contadoranuncio%3==0) {
+                                         anuncio.callOnClick();
+                                     }
                                  }
+
                              }else {
                                  EsteCountDownTimer.start();
-                                 Toast contador = Toast.makeText(getApplicationContext(), "Ha subido "+tiempoinicial, Toast.LENGTH_LONG);
-                                 contador.show();
                              }
 
                          }
@@ -282,15 +307,15 @@ public class JuegoRandom extends AppCompatActivity {
                 public void onFinish() {
                     chequearsi3();
                     if (finJuego){
-                        Toast Ganador1 = Toast.makeText(getApplicationContext(), "Se acabo", Toast.LENGTH_LONG);
-                        Ganador1.show();
+//                        Toast Ganador1 = Toast.makeText(getApplicationContext(), "Se acabo", Toast.LENGTH_LONG);
+//                        Ganador1.show();
                         AumentarVelocidad.cancel();
                         segundero.cancel();
                         primeravez = true;
                     }else {
                         EsteCountDownTimer.start();
-                        Toast contador = Toast.makeText(getApplicationContext(), "Ha subido "+tiempoinicial, Toast.LENGTH_LONG);
-                        contador.show();
+//                        Toast contador = Toast.makeText(getApplicationContext(), "Ha subido "+tiempoinicial, Toast.LENGTH_LONG);
+//                        contador.show();
                     }
 
                 }
@@ -299,6 +324,22 @@ public class JuegoRandom extends AppCompatActivity {
         /************************************************************************************************
          *
          *********************************************************************************************/
+
+
+
+        /************************************************************************************************
+         *REVISAR
+         *********************************************************************************************/
+        pantllaganadora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myintentGanador = new Intent(JuegoRandom.this, Recodconseguido.class);
+                startActivity(myintentGanador);
+                Intent Ganador2 = new Intent(JuegoRandom.this,Recodconseguido.class);
+                Ganador2.putExtra("RecordRandom",segundos);
+                startActivity(Ganador2);
+            }
+        });
 
 
 
@@ -362,9 +403,31 @@ public class JuegoRandom extends AppCompatActivity {
 
     public void actualizarhora(int segundos) {
 
-
         Segundos.setText(PalabraSegundos+ " "+ String.valueOf(segundos));
 
+    }
+    public  void actualizarbbdd(){
+        db.collection("Random").document("Random").set(user);
+    }
+
+    public void obtenerdatos(){
+
+        /**
+         * PEDAZO DE CODIGO CON EL QUE CONSEGUIMOS RECUPERAR UN DATO DE LA BASE DE DATOS BUSCANDO DENTRO DEL documentSnapshot
+         */
+
+        db.collection("Random").document(String.valueOf("Random")).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                recordactual = (String) documentSnapshot.get("Ramdom");
+                if (recordactual != null) {
+                    WordlRecord.setText(recordactual);
+                }else{
+                    WordlRecord.setText("0");
+                }
+                WordlRecord.setVisibility(View.INVISIBLE);
+            }
+        });
 
     }
 
