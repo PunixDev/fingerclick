@@ -10,9 +10,16 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.play.core.review.ReviewInfo;
+import com.google.android.play.core.review.ReviewManager;
+import com.google.android.play.core.review.ReviewManagerFactory;
+import com.google.android.play.core.tasks.OnCompleteListener;
+import com.google.android.play.core.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -30,6 +37,8 @@ public class Recodconseguido extends AppCompatActivity {
     EditText nombre;
     Button BotonEnviar;
     ImageView Premio;
+    private  ReviewManager manager;
+    private ReviewInfo reviewInfo;
 
     /*******************************************************************************************************
      * EMPIEZA EL METODO ON CREATE
@@ -45,6 +54,7 @@ public class Recodconseguido extends AppCompatActivity {
         nombre = (EditText) findViewById(R.id.editTextTextPersonName);
         BotonEnviar = (Button) findViewById(R.id.buttonEnviar);
         Premio = (ImageView) findViewById(R.id.conseguido);
+        Review();
 
 
 
@@ -68,8 +78,29 @@ public class Recodconseguido extends AppCompatActivity {
 
                     Personas.put("Random", String.valueOf(nombre.getText()));
                     actualizarbbdd();
+
+                    /**********************************************************
+                     * parrafo pedir review
+                     ************************************************/
+                    if(reviewInfo !=null){
+                        Task<Void> flow = manager.launchReviewFlow(Recodconseguido.this, reviewInfo);
+                        flow.addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                            }
+                        });
+
+                    }else{
+                        onBackPressed();
+                    }
+                    /**********************************************************
+                     * parrafo pedir review
+                     ************************************************/
+
+
                     Intent myintent2 = new Intent(Recodconseguido.this, JuegoRandom.class);
                     startActivity(myintent2);
+
                 }
 
 
@@ -107,6 +138,26 @@ public class Recodconseguido extends AppCompatActivity {
         }else {
             db.collection("Personas").document(String.valueOf("Random")).set(Personas);
         }
+    }
+    public void onBackPressed() {
+        Intent myintent = new Intent(Recodconseguido.this, PantallaInicial.class);
+        startActivity(myintent);
+    }
+
+    public void Review() {
+        manager = ReviewManagerFactory.create(this);
+        Task<ReviewInfo> request = manager.requestReviewFlow();
+        request.addOnCompleteListener(new OnCompleteListener<ReviewInfo>() {
+            @Override
+            public void onComplete(@NonNull Task<ReviewInfo> task) {
+                if (task.isSuccessful()) {
+                    // We can get the ReviewInfo object
+                    reviewInfo = task.getResult();
+                } else {
+                    // There was some problem, continue regardless of the result.
+                }
+            }
+        });
     }
 
 

@@ -23,4 +23,8 @@
     <string name="unocontra1">1VS1</string>
     <string name="Bienvenido">WILLKOMMEN</string>
     <string name="LaJaula">Der Käfig</string>
+    <string name="Rapidez">Geschwindigkeit</string>
+    <string name="Instrucciones">Anleitung</string>
+    <string name="explicacion">" Klicken Sie, bevor drei Kreise angezeigt werden. Wenn Sie drei Kreise auf dem Bildschirm haben, haben Sie verloren"</string>
+    <string name="aceptar">" in Ordnung"</string>
 </resources>

@@ -1,8 +1,12 @@
 package com.punix.fingerclick;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.gridlayout.widget.GridLayout;
 import android.os.CountDownTimer;
@@ -74,6 +78,10 @@ public class JuegoRandom extends AppCompatActivity {
     String recordactual;
     String Hayrecord;
     String Sigueintentando;
+    String Instrucciones;
+    String explicacion;
+    String aceptar;
+    SharedPreferences sharedPreferences;
 
 
 
@@ -94,7 +102,7 @@ public class JuegoRandom extends AppCompatActivity {
          */
         mInterstitialAd = new InterstitialAd(this);
         //mInterstitialAd.setAdUnitId("ca-app-pub-9708491916754108/3448421733");
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+       mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         contadoranuncio = 0;
         anuncio = (Button) findViewById(R.id.buttonanuncio);
@@ -143,6 +151,9 @@ public class JuegoRandom extends AppCompatActivity {
         Imaggensi = new boolean[]{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
         pantllaganadora.setVisibility(View.INVISIBLE);
         Hayrecord = getString(R.string.Hayrecord);
+        Instrucciones = getString(R.string.Instrucciones);
+        explicacion = getString(R.string.explicacion);
+        aceptar = getString(R.string.aceptar);
         Sigueintentando = getString(R.string.Sigueintentando);
         obtenerdatos();
 
@@ -193,6 +204,7 @@ public class JuegoRandom extends AppCompatActivity {
                 AumentarVelocidad.cancel();
                 EsteCountDownTimer.cancel();
                 segundero.cancel();
+
             }
         });
 
@@ -217,6 +229,29 @@ public class JuegoRandom extends AppCompatActivity {
         /************************************************************************************************
          *
          *********************************************************************************************/
+
+
+        /**********************************************************************************************
+         * Alerta explica el juego
+         *********************************************************************************************/
+
+        sharedPreferences = this.getSharedPreferences("com.punix.fingerclick", Context.MODE_PRIVATE);
+        String HaEntrado = sharedPreferences.getString("Si", "error");
+        Log.i("THE LANG", HaEntrado);
+
+
+        if(HaEntrado.equals("error")) {
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(Instrucciones)
+                    .setMessage(explicacion)
+                    .setPositiveButton(aceptar, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            setSI("Si");
+                        }
+                    }).show();
+        }
 
 
         /************************************************************************************************
@@ -260,14 +295,13 @@ public class JuegoRandom extends AppCompatActivity {
                          @Override
                          public void onTick(long millisUntilFinished) {
                              Enseñar1();
+                             chequearsi3();
                          }
 
                          @Override
                          public void onFinish() {
                              chequearsi3();
                              if (finJuego){
-//                                 Toast Ganador1 = Toast.makeText(getApplicationContext(), "Se acabo", Toast.LENGTH_LONG);
-//                                 Ganador1.show();
                                  AumentarVelocidad.cancel();
                                  segundero.cancel();
                                  primeravez = true;
@@ -276,6 +310,7 @@ public class JuegoRandom extends AppCompatActivity {
                                      actualizarbbdd();
                                      Toast.makeText(getApplicationContext(), Hayrecord, Toast.LENGTH_LONG).show();
                                      pantllaganadora.callOnClick();
+                                     finish();
                                  }else{
                                      Toast.makeText(getApplicationContext(), Sigueintentando, Toast.LENGTH_LONG).show();
                                      if (contadoranuncio%3==0) {
@@ -301,21 +336,18 @@ public class JuegoRandom extends AppCompatActivity {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     Enseñar1();
+                    chequearsi3();
                 }
 
                 @Override
                 public void onFinish() {
                     chequearsi3();
                     if (finJuego){
-//                        Toast Ganador1 = Toast.makeText(getApplicationContext(), "Se acabo", Toast.LENGTH_LONG);
-//                        Ganador1.show();
                         AumentarVelocidad.cancel();
                         segundero.cancel();
                         primeravez = true;
                     }else {
                         EsteCountDownTimer.start();
-//                        Toast contador = Toast.makeText(getApplicationContext(), "Ha subido "+tiempoinicial, Toast.LENGTH_LONG);
-//                        contador.show();
                     }
 
                 }
@@ -430,8 +462,21 @@ public class JuegoRandom extends AppCompatActivity {
         });
 
     }
+    public void onBackPressed() {
+        Intent myintent = new Intent(JuegoRandom.this, PantallaInicial.class);
+        startActivity(myintent);
+        AumentarVelocidad.cancel();
+        EsteCountDownTimer.cancel();
+        segundero.cancel();
+    }
+
+    public void setSI (String si){
+
+        sharedPreferences.edit().putString("Si", si).apply();
 
 
+    }
+    }
 
-}
+
 

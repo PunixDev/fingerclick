@@ -23,4 +23,8 @@
     <string name="unocontra1">1VS1</string>
     <string name="Bienvenido">Elige tu juego</string>
     <string name="LaJaula">La jaula</string>
+    <string name="Rapidez">Rapidez</string>
+    <string name="Instrucciones">Instrucciones</string>
+    <string name="explicacion">Clica antes de que aparezcan tres circulos en pantalla. Si aparecen, has perdido.</string>
+    <string name="aceptar">Vale</string>
 </resources>

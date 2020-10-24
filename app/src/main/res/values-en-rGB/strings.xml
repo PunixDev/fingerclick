@@ -23,4 +23,8 @@
     <string name="unocontra1">1VS1</string>
     <string name="Bienvenido">WELCOME!</string>
     <string name="LaJaula">The cage</string>
+    <string name="Rapidez">Speed</string>
+    <string name="Instrucciones">Instructions</string>
+    <string name="explicacion">" Click before three circles appear. If you have three circles on the screen you have lost"</string>
+    <string name="aceptar">OK</string>
 </resources>

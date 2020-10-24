@@ -186,7 +186,7 @@ public class segundos5 extends AppCompatActivity {
                                     actualizarbbdd();
                                     Toast.makeText(getApplicationContext(), Hayrecord, Toast.LENGTH_LONG).show();
                                     pantllaganadora.callOnClick();
-
+                                    finish();
 
                                 }else{
                                     Toast.makeText(getApplicationContext(), Sigueintentando, Toast.LENGTH_LONG).show();
@@ -208,6 +208,8 @@ public class segundos5 extends AppCompatActivity {
             });
 
 
+
+
     }
 
 
@@ -225,6 +227,14 @@ public class segundos5 extends AppCompatActivity {
             }
               segundosiniciales = segundorecibidos2;
             obtenerdatos();
+
+    }
+    public void onBackPressed(){
+        Intent myintent = new Intent(segundos5.this, MainActivity.class);
+        startActivity(myintent);
+        if (tiempobajando) {
+            yourCountDownTimer.cancel();
+        }
 
     }
 

@@ -802,6 +802,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    public void onBackPressed() {
+        Intent myintent = new Intent(MainActivity.this, PantallaInicial.class);
+        startActivity(myintent);
+    }
 }
 
 
