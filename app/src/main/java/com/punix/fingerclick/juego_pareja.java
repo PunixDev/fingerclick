@@ -258,4 +258,13 @@ public class juego_pareja extends AppCompatActivity {
 
     }
 
+    public void onBackPressed(){
+        Intent myintent = new Intent(juego_pareja.this, PantallaInicial.class);
+        startActivity(myintent);
+        if (tiempobajando) {
+            yourCountDownTimer.cancel();
+        }
+
+    }
+
 }
