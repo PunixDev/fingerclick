@@ -19,6 +19,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".juego_pareja" />
         <activity android:name=".segundos5" />
+        <activity android:name=".JuegoTrampa" />
         <activity
             android:name=".PantallaInicial"
             android:screenOrientation="portrait">

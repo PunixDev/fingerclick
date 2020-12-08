@@ -42,6 +42,7 @@ public class juego_pareja extends AppCompatActivity {
     boolean Pulsador2;
     CountDownTimer yourCountDownTimer;
     String Hasganado;
+    String Empate;
     String PalabraSegundos;
     private InterstitialAd mInterstitialAd;
     int contadoranuncio;
@@ -68,6 +69,7 @@ public class juego_pareja extends AppCompatActivity {
         Hasganado = getString(R.string.Hasganado);
         Score1.setText(String.valueOf(sumatorio1));
         Score2.setText(String.valueOf(sumatorio2));
+        Empate = getString(R.string.Empate);
 
 
         mInterstitialAd = new InterstitialAd(this);
@@ -157,7 +159,7 @@ public class juego_pareja extends AppCompatActivity {
                                     if (contadoranuncio%3==0) {
                                         anuncio.callOnClick();
                                     }
-                                }else{
+                                }else if (sumatorio1<sumatorio2){
 
                                     Toast Ganador2 = Toast.makeText(getApplicationContext(), Hasganado , Toast.LENGTH_LONG);
                                     View toastView = Ganador2.getView();
@@ -165,6 +167,14 @@ public class juego_pareja extends AppCompatActivity {
                                     Ganador2.setGravity(Gravity.TOP, 0, 0);
                                     Ganador2.setDuration(Toast.LENGTH_LONG);
                                     Ganador2.show();
+                                    if (contadoranuncio%3==0) {
+                                        anuncio.callOnClick();
+                                    }
+                                }else{
+                                    Toast Ganador1 = Toast.makeText(getApplicationContext(), Empate, Toast.LENGTH_LONG);
+                                    Ganador1.setGravity(Gravity.BOTTOM, 0, 0);
+                                    Ganador1.setDuration(Toast.LENGTH_LONG);
+                                    Ganador1.show();
                                     if (contadoranuncio%3==0) {
                                         anuncio.callOnClick();
                                     }

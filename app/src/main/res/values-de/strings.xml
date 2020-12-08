@@ -27,4 +27,6 @@
     <string name="Instrucciones">Anleitung</string>
     <string name="explicacion">" Klicken Sie, bevor drei Kreise angezeigt werden. Wenn Sie drei Kreise auf dem Bildschirm haben, haben Sie verloren"</string>
     <string name="aceptar">" in Ordnung"</string>
+    <string name="LaTrampa">Die Falle</string>
+    <string name="Empate">Krawatte!</string>
 </resources>

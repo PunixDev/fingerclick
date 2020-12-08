@@ -30,6 +30,7 @@ public class Recodconseguido extends AppCompatActivity {
     int segundosrecibidos;
     int segundosiniciales;
     int segundosrecibidosR;
+    int segundosrecibidosT;
     int segundosinicialesR;
     ImageButton botonpulsar;
     FirebaseFirestore db;
@@ -73,11 +74,18 @@ public class Recodconseguido extends AppCompatActivity {
                     actualizarbbdd();
                     Intent myintent = new Intent(Recodconseguido.this, MainActivity.class);
                     startActivity(myintent);
+                }else if(segundosrecibidosT > 0){
+
+                    Personas.put("Trampa", String.valueOf(nombre.getText()));
+                    actualizarbbdd();
+                    Intent myintent3 = new Intent(Recodconseguido.this, JuegoTrampa.class);
+                    startActivity(myintent3);
 
                 }else {
-
                     Personas.put("Random", String.valueOf(nombre.getText()));
                     actualizarbbdd();
+                    Intent myintent2 = new Intent(Recodconseguido.this, JuegoRandom.class);
+                    startActivity(myintent2);
 
                     /**********************************************************
                      * parrafo pedir review
@@ -96,10 +104,6 @@ public class Recodconseguido extends AppCompatActivity {
                     /**********************************************************
                      * parrafo pedir review
                      ************************************************/
-
-
-                    Intent myintent2 = new Intent(Recodconseguido.this, JuegoRandom.class);
-                    startActivity(myintent2);
 
                 }
 
@@ -123,6 +127,10 @@ public class Recodconseguido extends AppCompatActivity {
         if (recordRandom != 0) {
             segundosrecibidosR = recordRandom;
         }
+        int recordTrampa = myIntent.getIntExtra("RecordTrampa", 0);
+        if (recordTrampa != 0) {
+            segundosrecibidosT = recordTrampa;
+        }
         int segundorecibidos2 = myIntent.getIntExtra("Ganador", 0);
         if (segundorecibidos2 != 0) {
             segundosrecibidos = segundorecibidos2;
@@ -135,7 +143,9 @@ public class Recodconseguido extends AppCompatActivity {
     public  void actualizarbbdd(){
         if (segundosiniciales/1000 > 0) {
             db.collection("Personas").document(String.valueOf(segundosiniciales / 1000)).set(Personas);
-        }else {
+        }else if(segundosrecibidosT > 0){
+            db.collection("Personas").document(String.valueOf("Trampa")).set(Personas);
+        }else{
             db.collection("Personas").document(String.valueOf("Random")).set(Personas);
         }
     }

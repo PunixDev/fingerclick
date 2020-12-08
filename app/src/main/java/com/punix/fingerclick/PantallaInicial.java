@@ -20,6 +20,8 @@ public class PantallaInicial extends AppCompatActivity {
     public  String recod2;
     TextView recordRandom ;
     TextView recordRPersona;
+    TextView recordTrampa ;
+    TextView recordTPersona;
     String World_Record0;
     String World_Record;
 
@@ -33,9 +35,13 @@ public class PantallaInicial extends AppCompatActivity {
         Button botonWR = (Button) findViewById(R.id.buttonWR);
         Button boton1v1 = (Button) findViewById(R.id.buttonv1v);
         Button buttonrand = (Button) findViewById(R.id.buttonrand);
+        Button buttontramp = (Button) findViewById(R.id.buttontramp);
 
         recordRandom = (TextView) findViewById(R.id.recordRandom);
         recordRPersona = (TextView) findViewById(R.id.recordRPersona);
+
+        recordTrampa = (TextView) findViewById(R.id.recordTramp);
+        recordTPersona = (TextView) findViewById(R.id.recordTrampPersona);
 
         World_Record0 = getString(R.string.recod_mundial0);
         World_Record = getString(R.string.recod_mundial);
@@ -67,6 +73,14 @@ public class PantallaInicial extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myintent = new Intent(PantallaInicial.this, JuegoRandom.class);
+                startActivity(myintent);
+            }
+        });
+
+        buttontramp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myintent = new Intent(PantallaInicial.this, JuegoTrampa.class);
                 startActivity(myintent);
             }
         });
@@ -102,6 +116,32 @@ public class PantallaInicial extends AppCompatActivity {
                     recordRPersona.setText("  " + recod2);
                 } else {
                     recordRPersona.setText("  " + recod2);
+                }
+            }
+        });
+
+        db.collection("Trampa").document("Trampa").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                recod = (String) documentSnapshot.get("Trampa");
+
+                if (recod != null) {
+                    recordTrampa.setText("  " + World_Record + " " + recod);
+                } else {
+                    recordTrampa.setText("  " + World_Record0);
+                }
+            }
+        });
+
+        db.collection("Personas").document("Trampa").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                recod2 = (String) documentSnapshot.get("Trampa");
+
+                if (recod2 != null) {
+                    recordTPersona.setText("  " + recod2);
+                } else {
+                    recordTPersona.setText("  " + recod2);
                 }
             }
         });

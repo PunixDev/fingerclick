@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondoprimera"
+    tools:context=".JuegoRandom">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.09" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/Gridlayout"
+        android:layout_width="395dp"
+        android:layout_height="605dp"
+        app:columnCount="3"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline9"
+        app:rowCount="3">
+
+        <ImageView
+            android:id="@+id/Random1"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random2"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random3"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random4"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random5"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random6"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random7"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random8"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random9"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random10"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random11"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random12"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random13"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random14"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random15"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random16"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random17"
+            android:layout_width="95dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+        <ImageView
+            android:id="@+id/Random18"
+            android:layout_width="93dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:onClick="invisible"
+            app:srcCompat="@drawable/redondobuenof" />
+
+
+
+    </androidx.gridlayout.widget.GridLayout>
+
+    <ImageButton
+        android:id="@+id/buttonContador"
+        android:layout_width="60dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/botonplaysin"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline10" />
+
+    <ImageView
+        android:id="@+id/backR"
+        android:layout_width="64dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonContador"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/left"
+        android:clickable="true"/>
+
+    <ImageView
+        android:id="@+id/devueltaR"
+        android:layout_width="66dp"
+        android:layout_height="53dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonContador"
+        app:srcCompat="@drawable/devuelta"
+        android:clickable="true"/>
+
+    <TextView
+        android:id="@+id/segundosR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/botonaco"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Segundos"
+        android:textAlignment="center"
+        android:textColor="#0C0C0C"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:layout_marginRight="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonanuncio"
+        android:layout_width="42dp"
+        android:layout_height="25dp"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/pantallaganadora"
+        android:layout_width="41dp"
+        android:layout_height="20dp"
+        android:text="Button"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/WordlRecord2"
+        android:layout_width="38dp"
+        android:layout_height="13dp"
+        android:text="TextView"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonanuncio" />
+</androidx.constraintlayout.widget.ConstraintLayout>

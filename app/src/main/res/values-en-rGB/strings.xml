@@ -27,4 +27,6 @@
     <string name="Instrucciones">Instructions</string>
     <string name="explicacion">" Click before three circles appear. If you have three circles on the screen you have lost"</string>
     <string name="aceptar">OK</string>
+    <string name="LaTrampa">The trap</string>
+    <string name="Empate">" Tie!"</string>
 </resources>

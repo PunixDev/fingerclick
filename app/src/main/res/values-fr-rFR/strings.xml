@@ -27,4 +27,6 @@
     <string name="Instrucciones">Instructions</string>
     <string name="explicacion">Cliquez avant que trois cercles n\'apparaissent. Si vous avez trois cercles à l\'écran, vous avez perdu</string>
     <string name="aceptar">" Bien"</string>
+    <string name="LaTrampa">Le piège</string>
+    <string name="Empate">Attacher!</string>
 </resources>

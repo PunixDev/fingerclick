@@ -27,4 +27,6 @@
     <string name="Instrucciones">Istruzioni</string>
     <string name="explicacion">" Fare clic prima che compaiano tre cerchi. Se hai tre cerchi sullo schermo, hai perso"</string>
     <string name="aceptar">" Va bene"</string>
+    <string name="LaTrampa">La trappola</string>
+    <string name="Empate">" Cravatta!"</string>
 </resources>

@@ -253,12 +253,17 @@
         android:id="@+id/pantallaganadora"
         android:layout_width="41dp"
         android:layout_height="20dp"
-        android:text="Button" />
+        android:text="Button"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/WordlRecord2"
         android:layout_width="38dp"
         android:layout_height="13dp"
         android:text="TextView"
-        tools:layout_editor_absoluteY="5dp" />
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonanuncio" />
 </androidx.constraintlayout.widget.ConstraintLayout>

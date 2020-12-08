@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.gridlayout.widget.GridLayout;
 import android.os.CountDownTimer;
+import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -32,7 +33,6 @@ import java.util.Map;
 public class JuegoRandom extends AppCompatActivity {
 
 
-    int contador;
     int numeroRandom;
     int contadorvisible;
     boolean finJuego = false;
@@ -57,11 +57,10 @@ public class JuegoRandom extends AppCompatActivity {
     ImageView Random18;
     GridLayout gridLayout;
     ImageButton boton;
-    CountDownTimer EsteCountDownTimer;
-    CountDownTimer AumentarVelocidad;
+    CountDownTimer Aumentarmilisegundos;
     CountDownTimer segundero;
     public boolean [] Imaggensi = {};
-    int tiempoinicial;
+   // int tiempoinicial;
     ImageView backR;
     ImageView volverR;
     TextView Segundos;
@@ -71,6 +70,7 @@ public class JuegoRandom extends AppCompatActivity {
     int segundos = 0;
     int recordmundial;
     int contadoranuncio;
+    int milisegundoactual;
     FirebaseFirestore db;
     private InterstitialAd mInterstitialAd;
     Button anuncio;
@@ -82,6 +82,8 @@ public class JuegoRandom extends AppCompatActivity {
     String explicacion;
     String aceptar;
     SharedPreferences sharedPreferences;
+    int [] milisegundosswich = new int[1500];
+    int posicionArray = 0;
 
 
 
@@ -91,6 +93,28 @@ public class JuegoRandom extends AppCompatActivity {
         setContentView(R.layout.activity_juego_random);
         getSupportActionBar().hide();
 
+
+        /*********************************************************************
+         * parrafoque rellena los arrays de los segundos en los que muestra
+         *********************************************************************/
+        rellenars(0,10000,10);
+        rellenars(10000,20000,20);
+        rellenars(20000,30000,25);
+        rellenars(30000,40000,30);
+        rellenars(40000,50000,35);
+        rellenars(50000,60000,40);
+        rellenars(60000,70000,45);
+        rellenars(70000,80000,50);
+        rellenars(80000,90000,60);
+        rellenars(90000,100000,65);
+        rellenars(100000,110000,70);
+        rellenars(110000,120000,80);
+        rellenars(120000,130000,90);
+//        rellenars(130000,140000,100);
+//        rellenars(140000,150000,110);
+//        rellenars(150000,160000,120);
+//        rellenars(160000,170000,130);
+//        rellenars(170000,180000,140);
 
         /**
          * parrafo que define la bbdd
@@ -102,7 +126,7 @@ public class JuegoRandom extends AppCompatActivity {
          */
         mInterstitialAd = new InterstitialAd(this);
         //mInterstitialAd.setAdUnitId("ca-app-pub-9708491916754108/3448421733");
-       mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         contadoranuncio = 0;
         anuncio = (Button) findViewById(R.id.buttonanuncio);
@@ -144,7 +168,6 @@ public class JuegoRandom extends AppCompatActivity {
         WordlRecord = (TextView) findViewById(R.id.WordlRecord2);
         pantllaganadora = (Button) findViewById(R.id.pantallaganadora);
         gridLayout = (GridLayout) findViewById(R.id.Gridlayout);
-        tiempoinicial = 1000;
         Segundos = (TextView) findViewById(R.id.segundosR);
         PalabraSegundos = getString(R.string.Segundos);
         actualizarhora(0);
@@ -179,10 +202,13 @@ public class JuegoRandom extends AppCompatActivity {
                     counter.setImageDrawable(null);
                 }
 
-                AumentarVelocidad.cancel();
-                EsteCountDownTimer.cancel();
+                Aumentarmilisegundos.cancel();
                 segundero.cancel();
-                tiempoinicial = 1000;
+
+                posicionArray = 0;
+                milisegundoactual = 0;
+
+
                 actualizarhora(0);
                 primeravez = true;
                 contadoranuncio++;
@@ -201,8 +227,7 @@ public class JuegoRandom extends AppCompatActivity {
             public void onClick(View view) {
                 Intent myintent = new Intent(JuegoRandom.this, PantallaInicial.class);
                 startActivity(myintent);
-                AumentarVelocidad.cancel();
-                EsteCountDownTimer.cancel();
+                Aumentarmilisegundos.cancel();
                 segundero.cancel();
 
             }
@@ -216,8 +241,7 @@ public class JuegoRandom extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!finJuego && primeravez) {
-                    AumentarVelocidad.start();
-                    EsteCountDownTimer.start();
+                    Aumentarmilisegundos.start();
                     segundero.start();
                     primeravez = false;
                     recordmundial = Integer.parseInt(String.valueOf(WordlRecord.getText()));
@@ -273,89 +297,214 @@ public class JuegoRandom extends AppCompatActivity {
         };
 
 
+        /**********************************************************************************************
+         * estructura para que vaya cada vez más rápido
+         **********************************************************************************************/
+        Aumentarmilisegundos = new CountDownTimer(600000,1){
+            @Override
+            public void onTick(long millisUntilFinished) {
+                milisegundoactual++;
+                /**
+                 * primeros 10 segundos
+                 */
+                if (milisegundoactual <= 10000){
+                    for (int i = 0; i < 10; i++) {
+                        if (milisegundosswich[i] == milisegundoactual){
+                            Enseñar1();
+                            chequearsi3();
+                        }
 
-
-
-        /************************************************************************************************
-         * estructura de cowndoun timer pàra que aparezcan mas rapido cada vez
-         *********************************************************************************************/
-
-        AumentarVelocidad= new CountDownTimer(2000,1000) {
-                 @Override
-                 public void onTick(long millisUntilFinished) {
-
-                 }
-
-                 @Override
-                 public void onFinish() {
-                     tiempoinicial = (int) Math.round(tiempoinicial *0.95);
-                     AumentarVelocidad.start();
-
-                     EsteCountDownTimer = new CountDownTimer(tiempoinicial, 1000) {
-                         @Override
-                         public void onTick(long millisUntilFinished) {
-                             Enseñar1();
-                             chequearsi3();
-                         }
-
-                         @Override
-                         public void onFinish() {
-                             chequearsi3();
-                             if (finJuego){
-                                 AumentarVelocidad.cancel();
-                                 segundero.cancel();
-                                 primeravez = true;
-                                 user.put("Ramdom", String.valueOf(segundos));
-                                 if (segundos > recordmundial){
-                                     actualizarbbdd();
-                                     Toast.makeText(getApplicationContext(), Hayrecord, Toast.LENGTH_LONG).show();
-                                     pantllaganadora.callOnClick();
-                                     finish();
-                                 }else{
-                                     Toast.makeText(getApplicationContext(), Sigueintentando, Toast.LENGTH_LONG).show();
-                                     if (contadoranuncio%3==0) {
-                                         anuncio.callOnClick();
-                                     }
-                                 }
-
-                             }else {
-                                 EsteCountDownTimer.start();
-                             }
-
-                         }
-                     };
-
-
-                 }
-             };
-
-
-
-
-            EsteCountDownTimer = new CountDownTimer(tiempoinicial, 1000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    Enseñar1();
-                    chequearsi3();
-                }
-
-                @Override
-                public void onFinish() {
-                    chequearsi3();
-                    if (finJuego){
-                        AumentarVelocidad.cancel();
-                        segundero.cancel();
-                        primeravez = true;
-                    }else {
-                        EsteCountDownTimer.start();
                     }
 
                 }
-            };
+                /**
+                 * 10 segundos-20 segundos
+                 */
+                if (milisegundoactual > 10000 && milisegundoactual <= 20000 ){
+                    for (int i = 10; i < 30; i++) {
+                        if (milisegundosswich[i] == milisegundoactual){
+                            Enseñar1();
+                            chequearsi3();
+                        }
 
-        /************************************************************************************************
-         *
-         *********************************************************************************************/
+                    }
+
+                }
+                /**
+                 * 20 segundos-30 segundos
+                 */
+                if (milisegundoactual > 20000 && milisegundoactual <= 30000 ){
+                    for (int i = 30; i < 55; i++) {
+                        if (milisegundosswich[i] == milisegundoactual){
+                            Enseñar1();
+                            chequearsi3();
+                        }
+
+                    }
+
+                }
+                /**
+                 * 30 segundos-40 segundos
+                 */
+                if (milisegundoactual > 30000 && milisegundoactual <= 40000 ){
+                    for (int i = 55; i < 85 ; i++) {
+                        if (milisegundosswich[i] == milisegundoactual){
+                            Enseñar1();
+                            chequearsi3();
+                        }
+
+                    }
+
+                }
+                /**
+                 * 40 segundos-50 segundos
+                 */
+                if (milisegundoactual > 40000 && milisegundoactual <= 50000 ){
+                    for (int i = 85; i < 120 ; i++) {
+                        if (milisegundosswich[i] == milisegundoactual){
+                            Enseñar1();
+                            chequearsi3();
+                        }
+
+                    }
+
+                }
+                /**
+                 * 50 segundos-60 segundos
+                 */
+                if (milisegundoactual > 50000 && milisegundoactual <= 60000 ){
+                    for (int i = 120; i < 160 ; i++) {
+                        if (milisegundosswich[i] == milisegundoactual){
+                            Enseñar1();
+                            chequearsi3();
+                        }
+
+                    }
+
+                }
+                /**
+                 * 60 segundos-70 segundos
+                 */
+                if (milisegundoactual > 60000 && milisegundoactual <= 70000 ){
+                    for (int i = 160; i < 205 ; i++) {
+                        if (milisegundosswich[i] == milisegundoactual){
+                            Enseñar1();
+                            chequearsi3();
+                        }
+
+                    }
+
+                }
+                /**
+                 * 70 segundos-80 segundos
+                 */
+                if (milisegundoactual > 70000 && milisegundoactual <= 80000 ){
+                    for (int i = 205; i < 255 ; i++) {
+                        if (milisegundosswich[i] == milisegundoactual){
+                            Enseñar1();
+                            chequearsi3();
+                        }
+
+                    }
+
+                }
+                /**
+                 * 80 segundos-90 segundos
+                 */
+                if (milisegundoactual > 80000 && milisegundoactual <= 90000 ){
+                    for (int i = 255; i < 315 ; i++) {
+                        if (milisegundosswich[i] == milisegundoactual){
+                            Enseñar1();
+                            chequearsi3();
+                        }
+
+                    }
+
+                }
+                /**
+                 * 90 segundos-100 segundos
+                 */
+                if (milisegundoactual > 90000 && milisegundoactual <= 100000 ){
+                    for (int i = 315; i < 380 ; i++) {
+                        if (milisegundosswich[i] == milisegundoactual){
+                            Enseñar1();
+                            chequearsi3();
+                        }
+
+                    }
+
+                }
+                /**
+                 * 100 segundos-110 segundos
+                 */
+                if (milisegundoactual > 100000 && milisegundoactual <= 110000 ){
+                    for (int i = 380; i < 450 ; i++) {
+                        if (milisegundosswich[i] == milisegundoactual){
+                            Enseñar1();
+                            chequearsi3();
+                        }
+
+                    }
+
+                }
+                /**
+                 * 110 segundos-120 segundos
+                 */
+                if (milisegundoactual > 110000 && milisegundoactual <= 120000 ){
+                    for (int i = 450; i < 530 ; i++) {
+                        if (milisegundosswich[i] == milisegundoactual){
+                            Enseñar1();
+                            chequearsi3();
+                        }
+
+                    }
+
+                }
+                /**
+                 * 120 segundos-130 segundos
+                 */
+                if (milisegundoactual > 120000 && milisegundoactual <= 130000 ){
+                    for (int i = 530; i < 620 ; i++) {
+                        if (milisegundosswich[i] == milisegundoactual){
+                            Enseñar1();
+                            chequearsi3();
+                        }
+
+                    }
+
+                }
+
+
+                if(finJuego){
+                    if (finJuego){
+                        segundero.cancel();
+                        Aumentarmilisegundos.cancel();
+                        primeravez = true;
+                        user.put("Ramdom", String.valueOf(segundos));
+                        if (segundos > recordmundial){
+                            actualizarbbdd();
+                            Toast.makeText(getApplicationContext(), Hayrecord, Toast.LENGTH_LONG).show();
+                            pantllaganadora.callOnClick();
+                            finish();
+                        }else{
+                            Toast.makeText(getApplicationContext(), Sigueintentando, Toast.LENGTH_LONG).show();
+                            if (contadoranuncio%3==0) {
+                                anuncio.callOnClick();
+                            }
+                        }
+                    }
+
+
+
+                }
+
+            }
+            @Override
+            public void onFinish() {
+            }
+
+        };
+
 
 
 
@@ -388,6 +537,19 @@ public class JuegoRandom extends AppCompatActivity {
             Enseñar1();
         }
     }
+
+    public void rellenars (int milisegnicial, int milisegundofinal, int muñecosaparecen){
+       float valorasumar = 10000/muñecosaparecen;
+
+
+        do{
+            milisegnicial = milisegnicial + Math.round(valorasumar);
+            milisegundosswich[posicionArray] =  milisegnicial;
+            posicionArray++;
+        }while (milisegnicial != milisegundofinal && milisegnicial < (milisegundofinal-15) );
+
+    }
+
 
 
 
@@ -465,8 +627,9 @@ public class JuegoRandom extends AppCompatActivity {
     public void onBackPressed() {
         Intent myintent = new Intent(JuegoRandom.this, PantallaInicial.class);
         startActivity(myintent);
-        AumentarVelocidad.cancel();
-        EsteCountDownTimer.cancel();
+        //AumentarVelocidad.cancel();
+       // EsteCountDownTimer.cancel();
+        Aumentarmilisegundos.cancel();
         segundero.cancel();
     }
 
@@ -476,7 +639,7 @@ public class JuegoRandom extends AppCompatActivity {
 
 
     }
-    }
+}
 
 
 
